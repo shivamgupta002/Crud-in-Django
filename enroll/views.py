@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .forms import StudentRegistration
 from .models import User
 # Create your views here.
+
+# This function add and show your data
 def add_show(request):
     if(request.method=='POST'):
         fm=StudentRegistration(request.POST)
@@ -17,5 +19,7 @@ def add_show(request):
             fm=StudentRegistration()
     else:
         fm=StudentRegistration()
+    
+    stud=User.objects.all()
          
-    return render(request, 'enroll/addAndShow.html',{'form':fm})
+    return render(request, 'enroll/addAndShow.html',{'form':fm,'stu':stud,})
